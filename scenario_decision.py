@@ -182,6 +182,10 @@ def train_decision_tree(data):
     feature_table = data.iloc[:, :-1]  # All columns except the last
     label_vector = data.iloc[:, -1]   # The last column
 
+    # Strip leading/trailing whitespace from label values if string-like
+    if label_vector.dtype == 'object' or pd.api.types.is_string_dtype(label_vector):
+        label_vector = label_vector.astype('string').str.strip()
+
     # Train the decision tree model
     model = DecisionTreeClassifier()
     model.fit(feature_table, label_vector)
