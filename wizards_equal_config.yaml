@@ -1,0 +1,100 @@
+
+"player1": 
+    "module": "player_decision_tree"
+    "class": "PlayerDecisionTree"
+    "name": "Harry"
+    "strategies":
+        "aggressiveness": 0.8
+        "restraint": 1.5
+        "bid_strength_file": "BaseScenarios.xlsx"
+        "bid_strength_sheet": "standard_bid"
+        "play_strategy": "play_scenarios"
+        "scenario_file": "BaseScenarios.xlsx"
+        "scenario_sheet": ["Position_1, Position_2, Position_3, Position_4"]
+"player2": 
+    "module": "player_decision_tree"
+    "class": "PlayerDecisionTree"
+    "name": "Ron"
+    "strategies":
+        "aggressiveness": 0.8
+        "restraint": 1.5
+        "bid_strength_file": "BaseScenarios.xlsx"
+        "bid_strength_sheet": "standard_bid"
+        "play_strategy": "play_scenarios"
+        "scenario_file": "BaseScenarios.xlsx"
+        "scenario_sheet": ["Position_1, Position_2, Position_3, Position_4"]
+"player3": 
+    "module": "player_decision_tree"
+    "class": "PlayerDecisionTree"
+    "name": "Ginny"
+    "strategies":
+        "aggressiveness": 0.8
+        "restraint": 1.5
+        "bid_strength_file": "BaseScenarios.xlsx"
+        "bid_strength_sheet": "standard_bid"
+        "play_strategy": "play_scenarios"
+        "scenario_file": "BaseScenarios.xlsx"
+        "scenario_sheet": ["Position_1, Position_2, Position_3, Position_4"]
+"player4": 
+    "module": "player_decision_tree"
+    "class": "PlayerDecisionTree"
+    "name": "Hermione"
+    "strategies":
+        "aggressiveness": 0.8
+        "restraint": 1.5
+        "bid_strength_file": "BaseScenarios.xlsx"
+        "bid_strength_sheet": "standard_bid"
+        "play_strategy": "play_scenarios"
+        "scenario_file": "BaseScenarios.xlsx"
+        "scenario_sheet": ["Position_1, Position_2, Position_3, Position_4"]
+
+# The test_hands stanza contains multiple named test hand scenarios
+"test_hands":
+    "partner_unbeatable":
+        "bidder": "player1"
+        "bid": 5
+        "trumps": "Spades"
+        "player1": [["A", "Spades"], ["Q", "Spades"], ["J", "Spades"], ["J", "Clubs"], ["B", "Joker"], ["10", "Spades"]]
+        "player2": [["7", "Spades"], ["3", "Spades"], ["Q", "Hearts"], ["J", "Hearts"], ["10", "Hearts"], ["9", "Hearts"]]
+        "player3": [["K", "Spades"], ["L", "Joker"], ["5", "Spades"], ["4", "Spades"], ["10", "Diamonds"], ["9", "Diamonds"]]
+        "player4": [["8", "Spades"], ["6", "Spades"], ["2", "Spades"], ["2", "Clubs"], ["10", "Clubs"], ["9", "Clubs"]]
+    
+    "save_three":
+        "bidder": "player3"
+        "bid": 5
+        "trumps": "Clubs"
+        "player1": [["J", "Clubs"], ["L", "Joker"], ["6", "Clubs"], ["K", "Spades"], ["8", "Hearts"], ["6", "Diamonds"]]
+        "player2": [["9", "Clubs"], ["7", "Clubs"], ["2", "Clubs"], ["A", "Spades"], ["7", "Diamonds"], ["2", "Spades"]]
+        "player3": [["A", "Clubs"], ["K", "Clubs"], ["Q", "Clubs"], ["5", "Clubs"], ["4", "Clubs"], ["3", "Clubs"]]
+        "player4": [["J", "Spades"], ["B", "Joker"], ["10", "Clubs"], ["8", "Clubs"], ["9", "Spades"], ["6", "Spades"]]
+    
+    "protect_three":
+        "bidder": "player3"
+        "bid": 5
+        "trumps": "Clubs"
+        "player1": [["K", "Clubs"],["J", "Clubs"], ["L", "Joker"], ["6", "Clubs"], ["K", "Spades"], ["8", "Hearts"]]
+        "player2": [["9", "Clubs"], ["7", "Clubs"], ["3", "Clubs"], ["2", "Clubs"], ["A", "Spades"], ["7", "Diamonds"]]
+        "player3": [["A", "Clubs"], ["Q", "Clubs"], ["5", "Clubs"], ["4", "Clubs"], ["6", "Diamonds"], ["2", "Spades"]]
+        "player4": [["J", "Spades"], ["B", "Joker"], ["10", "Clubs"], ["8", "Clubs"], ["9", "Spades"], ["6", "Spades"]]
+
+    "ace_not_all_trumps":
+        "bidder": "player3"
+        "bid": 5
+        "trumps": "Clubs"
+        "player1": [["K", "Clubs"],["J", "Clubs"], ["L", "Joker"], ["6", "Clubs"], ["K", "Spades"], ["8", "Hearts"]]
+        "player2": [["9", "Clubs"], ["7", "Clubs"], ["3", "Clubs"], ["2", "Clubs"], ["A", "Spades"], ["7", "Diamonds"]]
+        "player3": [["A", "Clubs"], ["Q", "Clubs"], ["5", "Clubs"], ["4", "Clubs"], ["6", "Diamonds"], ["2", "Spades"]]
+        "player4": [["J", "Spades"], ["B", "Joker"], ["10", "Clubs"], ["8", "Clubs"], ["9", "Spades"], ["6", "Spades"]]
+    
+    "ace_all_trumps":
+        "bidder": "player3"
+        "bid": 5
+        "trumps": "Clubs"
+        "player1": [["K", "Clubs"],["J", "Clubs"], ["L", "Joker"], ["6", "Diamonds"], ["K", "Spades"], ["8", "Hearts"]]
+        "player2": [["9", "Clubs"], ["7", "Clubs"], ["3", "Clubs"], ["2", "Diamonds"], ["A", "Spades"], ["7", "Diamonds"]]
+        "player3": [["A", "Clubs"], ["Q", "Clubs"], ["5", "Clubs"], ["4", "Clubs"], ["6", "Clubs"], ["2", "Clubs"]]
+        "player4": [["J", "Spades"], ["B", "Joker"], ["10", "Clubs"], ["8", "Clubs"], ["9", "Spades"], ["6", "Spades"]]
+    
+    
+# Default test hand scenario name (used when --test_hand is specified without scenario name)
+"default_test_hand": "protect_three"
