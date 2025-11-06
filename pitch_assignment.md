@@ -85,7 +85,7 @@ For a little less detailed output, try the following command.
 
 - Edit your configuration file (e.g., `hogwarts.yaml`) so that your name and a teammate's name replace one of the existing teams. For example, you can replace Harry and Ginny with your team.  
 
-- Change the `bid_strength_file` for both players on your team to your new scenario file (e.g., `Hogwarts.xlsx`).  Also change the `bid_strength_sheet` for the players on your team to your new sheet (e.g., `FirstYears`).  Note that the players on your team need not have the same strategies, but for starters you may choose to make them the same.
+- Change the `bid_strength_file` and the `scenerio_file` for both players on your team to your new scenario configuration file (e.g., `Hogwarts.xlsx`).  Also change the `bid_strength_sheet` for the players on your team to your new sheet (e.g., `FirstYears`).  Note that the players on your team need not have the same strategies, but for starters you may choose to make them the same.
 
 - Change the `aggressiveness` and `restraint` values for the players on your team to values you think appropriate.  The players on your team need not have the same values for these strategies.
 

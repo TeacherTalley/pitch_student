@@ -326,7 +326,8 @@ class Player:
             suit_bid = round(sum(trump_ranks), 2)
 
             if debug:
-                print(f"\t{suit:8} for {suit_bid:2.2f} {trump_ranks}")
+                ranks_str = ', '.join(f"{r:2.2f}" for r in trump_ranks)
+                print(f"\t{suit:8} for {suit_bid:2.2f} [{ranks_str}]")
 
             if not self.bid_value or suit_bid > self.bid_value:
                 self.bid_value = suit_bid
