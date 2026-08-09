@@ -28,6 +28,7 @@ Copyright (c) 2025 Michelle Talley
 """
 
 from types import MappingProxyType
+from typing import Optional
 from pprint import pprint
 import importlib
 import argparse
@@ -119,8 +120,9 @@ class Player:
             - Excel bid strength files override default_bid_strength mappings
             - Missing strategies fall back to default_bid_strategy and default_play_strategy
         """
-        self.name = name
-        self.position = position
+        self.name: str = name if name is not None else 'Player'
+        self.position: Optional[int] = position
+        self.team: str = ''
 
         # player's hand state
         self.hand = Hand()
@@ -231,7 +233,7 @@ class Player:
         Returns:
             str: The name of the player.
         """
-        return self.name
+        return str(self.name)
 
     def __repr__(self):
         """
@@ -240,7 +242,7 @@ class Player:
         Returns:
             str: The string representation of the player.
         """
-        return self.name
+        return str(self.name)
 
     def state(self):
         """
@@ -963,7 +965,7 @@ def main():
 
         deck.reset()
         deck.shuffle()
-        hands = Hand(deck.deal(nhands=4, ncards=9))
+        hands = deck.deal(nhands=4, ncards=9)
 
         for i, next_hand in enumerate(hands):
             # Set the player's cards

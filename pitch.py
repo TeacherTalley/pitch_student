@@ -36,6 +36,7 @@ import time
 import importlib
 import argparse
 import random
+from typing import List, Optional
 from types import MappingProxyType
 #from pprint import pprint
 import yaml
@@ -122,7 +123,7 @@ class Pitch:
 
     """
 
-    def __init__(self, players=None, **kwargs):
+    def __init__(self, players: Optional[List[player.Player]] = None, **kwargs):
         """
         Initializes a new Pitch game instance with players and game settings.
         
@@ -139,7 +140,7 @@ class Pitch:
         """
         self.deck = deck.Deck()
 
-        if players or len(players) == 0:
+        if players:
             self.players = players
         else:
             self.players = [player.Player() for _ in range(4)]
@@ -147,6 +148,9 @@ class Pitch:
             self.players[1].name = 'East'
             self.players[2].name = 'South'
             self.players[3].name = 'West'
+
+        if len(self.players) != 4:
+            raise ValueError("Pitch requires exactly 4 players")
 
         for i in range(4):
             self.players[i].position = i
@@ -268,6 +272,9 @@ class Pitch:
                 print(f'\t{self.players[i].name} passes.')
             else:
                 print(f'\t{self.players[i].name} bids {bid}.')
+
+        if bidder is None:
+            raise RuntimeError("Bidding phase failed to determine a bidder")
 
         print(f'\t{self.players[bidder].name} wins with {current_bid} bid.')
         return bidder, current_bid
@@ -507,6 +514,9 @@ class Pitch:
             which is caught by the calling game() method to trigger re-deal.
         """
         bidder = self.game_state['bidder']
+        if bidder is None:
+            raise RuntimeError("Cannot fill hands without a bidder")
+
         for i, next_player in enumerate(self.players):
             if i == bidder: # complete bidder's hand later
                 continue
@@ -621,7 +631,10 @@ class Pitch:
 
         # determine the winner of the game; check edge case of both teams over 31 first
         if self.game_state['score']['A'] >= 31 and self.game_state['score']['B'] >= 31:
-            winner = 'A' if bidder in (0, 2) else 'B'
+            final_bidder = self.game_state.get('bidder')
+            if final_bidder is None:
+                raise RuntimeError("Cannot resolve winner without a final bidder")
+            winner = 'A' if final_bidder in (0, 2) else 'B'
         else:
             winner = 'A' if self.game_state['score']['A'] > self.game_state['score']['B'] else 'B'
 
@@ -906,7 +919,7 @@ def configure_players(config, game_state=None):
                                   **player_config)
 
         players.append(new_player)
-        if game_state.get('debug', False):
+        if game_state and game_state.get('debug', False):
             pass
             # print(f"Player {i+1}: {new_player}")
             # pprint(new_player.state())
